@@ -11,7 +11,7 @@ This project is a solution to the toy robot problem as specified in PROBLEM.md
 ### Compiling and running
 To compile the simulator
 
-``` $ kotlinc toy-robot.kt -include-runtime -d toy-robot.jar```
+``` $ kotlinc src/main/kotlin/toyrobot -include-runtime -d toy-robot.jar```
 
 To run the simulator:
 
