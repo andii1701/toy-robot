@@ -4,6 +4,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import kotlin.system.exitProcess
 
+
 fun main(args: Array<String>) {
     val commands = mutableListOf<String>()
     val filename = "commands.txt"

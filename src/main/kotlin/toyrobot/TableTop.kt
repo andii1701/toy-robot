@@ -1,5 +1,6 @@
 package toyrobot
 
+
 class TableTopException(override var message:String): Exception(message)
 
 
