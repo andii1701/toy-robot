@@ -3,9 +3,7 @@ package toyrobot
 class TableTopException(override var message:String): Exception(message)
 
 
-class TableTop(xLength: Int, yLength: Int) {
-    val xLength = xLength
-    val yLength = yLength
+class TableTop(val xLength: Int, val yLength: Int) {
 
     init {
         if (xLength < 0 || yLength < 0) throw TableTopException("Table dimensions must not be negative")

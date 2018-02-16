@@ -6,21 +6,20 @@ import toyrobot.TableTopException
 
 class TableTopTests : StringSpec() {
     init {
-        "TableTop(xLength=5, yLength=5) should set xLength to 5 and yLength to 6"  {
-            val t = TableTop(xLength=5, yLength=6)
+
+        "TableTop(xLength = 5, yLength = 5) should set xLength to 5 and yLength to 6"  {
+            val t = TableTop(xLength = 5, yLength = 6)
             t.xLength shouldBe 5
             t.yLength shouldBe 6
         }
+
         "TableTop() xLength and yLength values should not be negative"  {
-            shouldThrow<TableTopException>  {
-                TableTop(xLength=-1, yLength=0)
-            }
-            shouldThrow<TableTopException>  {
-                TableTop(xLength=0, yLength=-1)
-            }
+            shouldThrow<TableTopException> { TableTop(xLength = -1, yLength = 0) }
+            shouldThrow<TableTopException> { TableTop(xLength = 0, yLength = -1) }
         }
-        "TableTop(...).onTable(x, y) method should return true if x,y are coordinates are on the table" {
-            val t = TableTop(xLength=5, yLength=5)
+
+        "TableTop(...).onTable(x, y) method should return true if x and y are coordinates are on the table" {
+            val t = TableTop(xLength = 5, yLength = 5)
             t.onTable(0,0) shouldBe true
             t.onTable(4,4) shouldBe true
             t.onTable(4,5) shouldBe false
