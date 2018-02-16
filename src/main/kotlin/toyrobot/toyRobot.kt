@@ -1,3 +1,5 @@
+package toyrobot
+
 import java.io.File
 import java.io.FileNotFoundException
 import kotlin.system.exitProcess
