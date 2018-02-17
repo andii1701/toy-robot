@@ -1,5 +1,7 @@
 package toyrobot
 
+import kotlin.math.E
+
 
 class CommandsParsingException(override var message:String): Exception(message)
 
@@ -8,6 +10,23 @@ class NoCommandsException(override var message:String): Exception(message)
 
 
 enum class Heading { NORTH, EAST, SOUTH, WEST }
+
+// TODO is there a way to add this to the enum class
+fun nextHeading(h: Heading?): Heading? = when(h) {
+    Heading.NORTH -> Heading.EAST
+    Heading.EAST -> Heading.SOUTH
+    Heading.SOUTH -> Heading.WEST
+    Heading.WEST -> Heading.NORTH
+    null -> null //TODO FIX
+}
+
+fun previoudHeading(h: Heading?): Heading? = when(h) {
+    Heading.NORTH -> Heading.WEST
+    Heading.EAST -> Heading.NORTH
+    Heading.SOUTH -> Heading.EAST
+    Heading.WEST -> Heading.SOUTH
+    null -> null //TODO FIX
+}
 
 
 enum class TurnDirection { LEFT, RIGHT }
@@ -49,8 +68,7 @@ class Commands {
             Heading.WEST -> Coordinate(c.x - u, c.y)
         }
     }
-
-
+    
     private fun isValidPlaceCommand(command: String):
             Boolean = Regex("""PLACE \d+,\d+,(NORTH|SOUTH|EAST|WEST)""").matches(command)
 }

@@ -27,7 +27,7 @@ class SimulationController(private var robot: Robot, private val commands: List<
         print(lastReport)
     }
 
-    // TODO move to setter
+    // TODO move to getter
     fun lastReport(): String? = lastReport
 
 

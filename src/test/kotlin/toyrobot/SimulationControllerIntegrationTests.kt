@@ -22,7 +22,6 @@ class SimulationControllerIntegrationTests : StringSpec() {
         }
 
         "Verify multiple place commands work"  {
-            val robot: Robot? = null
             val sim = SimulationController(Robot(), listOf("PLACE 0,0,NORTH", "PLACE 1,2,EAST", "REPORT"), Commands())
             sim.lastReport() shouldBe "1,2 and EAST"
         }
