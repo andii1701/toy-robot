@@ -4,6 +4,8 @@ import io.kotlintest.specs.StringSpec
 
 import toyrobot.Commands
 import toyrobot.NoCommandsException
+import toyrobot.Heading as H
+import toyrobot.TurnDirection as D
 
 
 class CommandsTests : StringSpec() {
@@ -46,6 +48,17 @@ class CommandsTests : StringSpec() {
                     " PLACE 5,5,NORTH",
                     "").forEach {
                 Commands().isValidCommand(it) shouldBe false }
+        }
+
+        "Commands().turn(currentDir, newDir) should return correct new direction based on current direction"  {
+            Commands().turn(H.NORTH, D.LEFT) shouldBe H.WEST
+            Commands().turn(H.NORTH, D.RIGHT) shouldBe H.EAST
+            Commands().turn(H.EAST, D.LEFT) shouldBe H.NORTH
+            Commands().turn(H.EAST, D.RIGHT) shouldBe H.SOUTH
+            Commands().turn(H.SOUTH, D.LEFT) shouldBe H.EAST
+            Commands().turn(H.SOUTH, D.RIGHT) shouldBe H.WEST
+            Commands().turn(H.WEST, D.LEFT) shouldBe H.SOUTH
+            Commands().turn(H.WEST, D.RIGHT) shouldBe H.NORTH
         }
     }
 }
