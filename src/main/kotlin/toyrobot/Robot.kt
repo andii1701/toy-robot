@@ -32,12 +32,19 @@ class Robot(private var tableTop: TableTop)  {
     }
 
     fun move() {
-        val u = moveByNumberOfUnits
+        var newX = x!!
+        var newY = y!!
+
         when (heading) {
-            Heading.NORTH -> y = y?.plus(u)
-            Heading.EAST -> x = x?.plus(u)
-            Heading.SOUTH -> y = y?.minus(u)
-            Heading.WEST -> x = x?.minus(u)
+            Heading.NORTH -> newY += moveByNumberOfUnits
+            Heading.EAST ->  newX += moveByNumberOfUnits
+            Heading.SOUTH -> newY -= moveByNumberOfUnits
+            Heading.WEST -> newX -= moveByNumberOfUnits
+        }
+
+        if (tableTop.onTable(newX, newY))  {
+            x = newX
+            y = newY
         }
     }
 }

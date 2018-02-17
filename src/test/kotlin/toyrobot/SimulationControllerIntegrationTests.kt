@@ -32,6 +32,21 @@ class SimulationControllerIntegrationTests : StringSpec() {
             sim.lastReport() shouldBe "0,1 and NORTH"
         }
 
-        "Verify commands are ignored before the place command"  {}
+        "Verify place command is ignored if place is off the table"  {
+            val sim = SimulationController(Robot(tableTop), listOf("PLACE 5,0,NORTH", "REPORT"), Commands())
+            sim.lastReport() shouldBe null
+        }
+
+        "Verify move commands are ignore if robot is moved off the table"  {
+            val sim = SimulationController(Robot(tableTop), listOf("PLACE 0,0,SOUTH", "MOVE", "REPORT"), Commands())
+            sim.lastReport() shouldBe "0,0 and SOUTH"
+        }
+
+        "Verify commands before the first valid place command are ignored"  {
+            val sim = SimulationController(Robot(tableTop), listOf(
+                    "PLACE 5,0,WEST", "LEFT", "MOVE", "REPORT", "PLACE 0,0,NORTH", "REPORT"), Commands())
+            sim.lastReport() shouldBe "0,0 and NORTH"
+        }
+
     }
 }
