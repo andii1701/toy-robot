@@ -18,6 +18,7 @@ class Robot(private var tableTop: TableTop)  {
         throw UnexpectedCommandException("Error report should not be called before robot is placed.")
 
     fun place(x: Int, y: Int, heading: Heading) {
+        if (!tableTop.onTable(x, y)) return
         this.x = x
         this.y = y
         this.heading = heading

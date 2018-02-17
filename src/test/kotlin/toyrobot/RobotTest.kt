@@ -13,6 +13,7 @@ class RobotTest : StringSpec() {
         "Robot(..) should set the correct data"  {
             val r = Robot(tableTop)
             r.place(0, 1, Heading.NORTH)
+            // TODO these three lines below should be replaced with a Vector or simulaor class
             r.x shouldBe 0
             r.y shouldBe 1
             r.heading shouldBe Heading.NORTH
@@ -25,6 +26,31 @@ class RobotTest : StringSpec() {
             r.y shouldBe 2
             r.heading shouldBe Heading.SOUTH
         }
+
+        "Robot().place should do nothing if x and y are off tabletop and place is not called"  {
+            val r = Robot(tableTop)
+            r.place(-1, -2, Heading.SOUTH)
+            r.placed() shouldBe false
+        }
+
+        "Robot().place should do nothing if x is off tabletop"  {
+            val r = Robot(tableTop)
+            r.place(1, 2, Heading.EAST)
+            r.place(5, 0, Heading.SOUTH)
+            r.x shouldBe 1
+            r.y shouldBe 2
+            r.heading shouldBe Heading.EAST
+        }
+
+        "Robot().place should do nothing if y is off tabletop"  {
+            val r = Robot(tableTop)
+            r.place(1, 2, Heading.EAST)
+            r.place(0, 5, Heading.SOUTH)
+            r.x shouldBe 1
+            r.y shouldBe 2
+            r.heading shouldBe Heading.EAST
+        }
+
 
         "Robot().placed() should return true if x, y and heading are set"  {
             val r = Robot(tableTop)
