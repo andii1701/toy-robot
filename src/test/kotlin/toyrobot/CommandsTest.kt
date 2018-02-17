@@ -36,8 +36,7 @@ class CommandsTests : StringSpec() {
                     "PLACE 5,5,SOUTH",
                     "PLACE 5,5,EAST",
                     "PLACE 5,5,WEST",
-                    "PLACE 00050,000,WEST").forEach {
-                Commands().isValidCommand(it) shouldBe true }
+                    "PLACE 00050,000,WEST").forEach { Commands().isValidCommand(it) shouldBe true }
         }
 
         "Commands().isValidCommand(cmd) should return false for all invalid PLACE x,y,F commands" {
@@ -49,8 +48,7 @@ class CommandsTests : StringSpec() {
                     "PLACE 00,-00050,EAST",
                     "PLACE 5,5,NORTH ",
                     " PLACE 5,5,NORTH",
-                    "").forEach {
-                Commands().isValidCommand(it) shouldBe false }
+                    "").forEach { Commands().isValidCommand(it) shouldBe false }
         }
 
         "Commands().parsePlace(..) should throw excaption for invalid place command"  {
@@ -62,17 +60,6 @@ class CommandsTests : StringSpec() {
             p.first shouldBe 1
             p.second shouldBe 2
             p.third shouldBe H.NORTH
-        }
-
-        "Commands().turn(currentDir, newDir) should return correct new heading based on current direction"  {
-            Commands().turn(H.NORTH, D.LEFT) shouldBe H.WEST
-            Commands().turn(H.NORTH, D.RIGHT) shouldBe H.EAST
-            Commands().turn(H.EAST, D.LEFT) shouldBe H.NORTH
-            Commands().turn(H.EAST, D.RIGHT) shouldBe H.SOUTH
-            Commands().turn(H.SOUTH, D.LEFT) shouldBe H.EAST
-            Commands().turn(H.SOUTH, D.RIGHT) shouldBe H.WEST
-            Commands().turn(H.WEST, D.LEFT) shouldBe H.SOUTH
-            Commands().turn(H.WEST, D.RIGHT) shouldBe H.NORTH
         }
 
         "Commands().move(...) should return a Coordinate object containing the coodinate of where the move will end"  {

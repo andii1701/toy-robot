@@ -1,7 +1,6 @@
 package toyrobot
 
 
-
 class SimulationController(private var robot: Robot?, private val commands: List<String>, private val cmdProcessor: Commands)  {
     private var lastReport: String? = null
 
@@ -14,19 +13,23 @@ class SimulationController(private var robot: Robot?, private val commands: List
                 // XXX dumb fix
                 if (robot == null) {
                     val p = cmdProcessor.parsePlace(cmd)
-                    // XXX really unreadable
+                    // TODO really unreadable
                     robot = Robot(p.first, p.second, p.third)
                 }
             }
             when (cmd) {
-                "REPORT" -> {
-                    // MOVE to report method
-                    lastReport = robot?.report()
-                    print(lastReport)
-                }
+                "REPORT" -> report()
+                "LEFT" -> robot?.turn(TurnDirection.LEFT)
+                "RIGHT" -> robot?.turn(TurnDirection.RIGHT)
             }
         }
     }
+
+    private fun report()  {
+        lastReport = robot?.report()
+        print(lastReport)
+    }
+
     // TODO move to setter
     fun lastReport(): String? = lastReport
 
