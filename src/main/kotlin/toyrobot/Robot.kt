@@ -4,7 +4,10 @@ package toyrobot
 class UnexpectedCommandException(override var message:String): Exception(message)
 
 
-class Robot(var x: Int? = null, var y: Int? = null, var heading: Heading? = null) {
+class Robot(private var tableTop: TableTop)  {
+    var x: Int? = null
+    var y: Int? = null
+    var heading: Heading? = null
 
     private val moveByNumberOfUnits = 1
 
