@@ -12,20 +12,18 @@ class NoCommandsException(override var message:String): Exception(message)
 enum class Heading { NORTH, EAST, SOUTH, WEST }
 
 // TODO is there a way to add this to the enum class
-fun nextHeading(h: Heading?): Heading? = when(h) {
+fun nextHeading(h: Heading): Heading = when(h) {
     Heading.NORTH -> Heading.EAST
     Heading.EAST -> Heading.SOUTH
     Heading.SOUTH -> Heading.WEST
     Heading.WEST -> Heading.NORTH
-    null -> null //TODO FIX
 }
 
-fun previoudHeading(h: Heading?): Heading? = when(h) {
+fun previousHeading(h: Heading): Heading = when(h) {
     Heading.NORTH -> Heading.WEST
     Heading.EAST -> Heading.NORTH
     Heading.SOUTH -> Heading.EAST
     Heading.WEST -> Heading.SOUTH
-    null -> null //TODO FIX
 }
 
 

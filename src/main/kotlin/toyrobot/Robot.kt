@@ -26,8 +26,8 @@ class Robot(private var tableTop: TableTop)  {
 
     fun turn(turnDirection: TurnDirection) {
         heading = when(turnDirection)  {
-            TurnDirection.LEFT -> previoudHeading(heading)
-            TurnDirection.RIGHT -> nextHeading(heading)
+            TurnDirection.LEFT -> previousHeading(heading!!)
+            TurnDirection.RIGHT -> nextHeading(heading!!)
         }
     }
 
