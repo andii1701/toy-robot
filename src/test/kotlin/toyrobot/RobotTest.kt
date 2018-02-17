@@ -60,5 +60,28 @@ class RobotTest : StringSpec() {
             r.turn(TurnDirection.RIGHT)
             r.heading shouldBe Heading.NORTH
         }
+
+        "Commands().move(...) should set the robot to the correct position and not change the heading"  {
+            var r = Robot(1,1, Heading.NORTH)
+            r.move()
+            r.x shouldBe 1
+            r.y shouldBe 2
+            r.heading shouldBe Heading.NORTH
+            r = Robot(1,1, Heading.EAST)
+            r.move()
+            r.x shouldBe 2
+            r.y shouldBe 1
+            r.heading shouldBe Heading.EAST
+            r = Robot(1,1, Heading.SOUTH)
+            r.move()
+            r.x shouldBe 1
+            r.y shouldBe 0
+            r.heading shouldBe Heading.SOUTH
+            r = Robot(1,1, Heading.WEST)
+            r.move()
+            r.x shouldBe 0
+            r.y shouldBe 1
+            r.heading shouldBe Heading.WEST
+        }
     }
 }

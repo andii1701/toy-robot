@@ -18,6 +18,7 @@ class SimulationController(private var robot: Robot, private val commands: List<
                 "REPORT" -> report()
                 "LEFT" -> robot.turn(TurnDirection.LEFT)
                 "RIGHT" -> robot.turn(TurnDirection.RIGHT)
+                "MOVE" -> robot.move()
             }
         }
     }

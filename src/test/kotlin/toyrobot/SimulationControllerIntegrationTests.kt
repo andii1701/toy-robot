@@ -25,5 +25,12 @@ class SimulationControllerIntegrationTests : StringSpec() {
             val sim = SimulationController(Robot(), listOf("PLACE 0,0,NORTH", "PLACE 1,2,EAST", "REPORT"), Commands())
             sim.lastReport() shouldBe "1,2 and EAST"
         }
+
+        "Verify place, move and report works"  {
+            val sim = SimulationController(Robot(), listOf("PLACE 0,0,NORTH", "MOVE", "REPORT"), Commands())
+            sim.lastReport() shouldBe "0,1 and NORTH"
+        }
+
+        "Verify commands are ignored before the place command"  {}
     }
 }

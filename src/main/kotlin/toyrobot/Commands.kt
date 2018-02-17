@@ -34,9 +34,6 @@ enum class TurnDirection { LEFT, RIGHT }
 // TODO I think this could be better named eg Command parser
 class Commands {
 
-    private val moveByNumberOfUnits = 1
-
-
     fun validateCommands(commands: List<String>) {
         if (commands.isEmpty()) throw NoCommandsException("List of commands is empty")
 
@@ -59,16 +56,6 @@ class Commands {
         return Triple(s[0].removePrefix("PLACE ").toInt(),s[1].toInt(), Heading.valueOf(s[2]))
     }
 
-    fun move(c: Coordinate, heading: Heading): Coordinate {
-        val u = moveByNumberOfUnits
-        return when (heading) {
-            Heading.NORTH -> Coordinate(c.x, c.y + u)
-            Heading.EAST -> Coordinate(c.x + u, c.y)
-            Heading.SOUTH -> Coordinate(c.x, c.y - u)
-            Heading.WEST -> Coordinate(c.x - u, c.y)
-        }
-    }
-    
     private fun isValidPlaceCommand(command: String):
             Boolean = Regex("""PLACE \d+,\d+,(NORTH|SOUTH|EAST|WEST)""").matches(command)
 }
