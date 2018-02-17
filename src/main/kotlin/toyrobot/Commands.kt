@@ -12,7 +12,7 @@ enum class Heading { NORTH, EAST, SOUTH, WEST }
 
 enum class TurnDirection { LEFT, RIGHT }
 
-// TODO I think this could be better named
+// TODO I think this could be better named eg Command parser
 class Commands {
 
     private val moveByNumberOfUnits = 1
