@@ -13,6 +13,14 @@ class RobotTest : StringSpec() {
             r.heading shouldBe Heading.NORTH
         }
 
+        "Robot().place should set x, y and heading"  {
+            val r = Robot(0, 0, Heading.NORTH)
+            r.place(1, 2, Heading.SOUTH)
+            r.x shouldBe 1
+            r.y shouldBe 2
+            r.heading shouldBe Heading.SOUTH
+        }
+
         "Robot().report() should return a string containing the report of the robot"  {
             Robot(3,4, Heading.SOUTH).report() shouldBe "3,4 and SOUTH"
         }

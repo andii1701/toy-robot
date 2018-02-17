@@ -5,19 +5,16 @@ class SimulationController(private var robot: Robot?, private val commands: List
     private var lastReport: String? = null
 
     init {
-        // TODO ignore commands until place
         cmdProcessor.validateCommands(commands)
 
-        for (cmd in commands)  {
-            if (cmd.startsWith("PLACE")) {
-                // XXX dumb fix
-                if (robot == null) {
-                    val p = cmdProcessor.parsePlace(cmd)
-                    // TODO really unreadable
-                    robot = Robot(p.first, p.second, p.third)
-                }
+        commands.forEach {
+            if (it.startsWith("PLACE")) {
+                val p = cmdProcessor.parsePlace(it)
+                // TODO unreadable
+                robot = robot?.place(p.first, p.second, p.third) ?: Robot(p.first, p.second, p.third)
             }
-            when (cmd) {
+
+            when (it) {
                 "REPORT" -> report()
                 "LEFT" -> robot?.turn(TurnDirection.LEFT)
                 "RIGHT" -> robot?.turn(TurnDirection.RIGHT)

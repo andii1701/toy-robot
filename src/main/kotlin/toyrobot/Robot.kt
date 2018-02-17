@@ -4,6 +4,13 @@ data class Robot(var x: Int, var y: Int, var heading: Heading)  {
 
     fun report(): String = "$x,$y and $heading"
 
+    fun place(x: Int, y: Int, heading: Heading): Robot  {
+        this.x = x
+        this.y = y
+        this.heading = heading
+        return this
+    }
+
     fun turn(turnDirection: TurnDirection) {
         // I'm doing this the dumb way because Kotlin % works different to python TODO FIX
         if (heading == Heading.NORTH && turnDirection == TurnDirection.LEFT)
