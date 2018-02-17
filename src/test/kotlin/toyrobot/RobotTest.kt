@@ -12,5 +12,9 @@ class RobotTest : StringSpec() {
             r.y shouldBe 1
             r.heading shouldBe Heading.NORTH
         }
+
+        "Robot().report() should return a string containing the report of the robot"  {
+            Robot(3,4, Heading.SOUTH).report() shouldBe "3,4 and SOUTH"
+        }
     }
 }
