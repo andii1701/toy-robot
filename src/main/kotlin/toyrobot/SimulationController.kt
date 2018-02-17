@@ -1,7 +1,7 @@
 package toyrobot
 
 
-class SimulationController(private var robot: Robot?, private val commands: List<String>, private val cmdProcessor: Commands)  {
+class SimulationController(private var robot: Robot, private val commands: List<String>, private val cmdProcessor: Commands)  {
     private var lastReport: String? = null
 
     init {
@@ -9,21 +9,21 @@ class SimulationController(private var robot: Robot?, private val commands: List
 
         commands.forEach {
             if (it.startsWith("PLACE")) {
-                val p = cmdProcessor.parsePlace(it)
                 // TODO unreadable
-                robot = robot?.place(p.first, p.second, p.third) ?: Robot(p.first, p.second, p.third)
+                val p = cmdProcessor.parsePlace(it)
+                robot.place(p.first, p.second, p.third)
             }
 
-            when (it) {
+            if (robot.placed()) when (it) {
                 "REPORT" -> report()
-                "LEFT" -> robot?.turn(TurnDirection.LEFT)
-                "RIGHT" -> robot?.turn(TurnDirection.RIGHT)
+                "LEFT" -> robot.turn(TurnDirection.LEFT)
+                "RIGHT" -> robot.turn(TurnDirection.RIGHT)
             }
         }
     }
 
     private fun report()  {
-        lastReport = robot?.report()
+        lastReport = robot.report()
         print(lastReport)
     }
 
