@@ -1,6 +1,7 @@
 package toyrobot
 
-import java.awt.HeadlessException
+
+class CommandsParsingException(override var message:String): Exception(message)
 
 
 class NoCommandsException(override var message:String): Exception(message)
@@ -11,19 +12,17 @@ enum class Heading { NORTH, EAST, SOUTH, WEST }
 
 enum class TurnDirection { LEFT, RIGHT }
 
-
+// TODO I think this could be better named
 class Commands {
 
     private val moveByNumberOfUnits = 1
     private val U = moveByNumberOfUnits
 
 
-    fun validateCommands(commands: List<String>):Boolean {
+    fun validateCommands(commands: List<String>) {
         if (commands.isEmpty()) throw NoCommandsException("List of commands is empty")
 
-        commands.forEach() { if (!isValidCommand(it)) { return false } }
-
-        return true
+        commands.forEach { if (!isValidCommand(it)) { throw CommandsParsingException("Error could not parse commands: $commands") } }
     }
 
     fun isValidCommand(command: String): Boolean  {
@@ -35,8 +34,15 @@ class Commands {
         }
     }
 
+    fun parsePlace(cmd: String): Triple<Int, Int, Heading>  {
+        if (!isValidPlaceCommand(cmd)) throw CommandsParsingException("Error could not parse command: $cmd")
+        // TODO convert to regex group
+        val s = cmd.split(',')
+        return Triple(s[0].removePrefix("PLACE ").toInt(),s[1].toInt(), Heading.valueOf(s[2]))
+    }
+
     fun turn(currentHeading: Heading, turnDirection: TurnDirection): Heading {
-        // I'm doing this the dumb was because Kotlin % works diffent to python TODO FIX
+        // I'm doing this the dumb way because Kotlin % works diffent to python TODO FIX
         if (currentHeading == Heading.NORTH && turnDirection == TurnDirection.LEFT)
             return Heading.WEST
         else if (currentHeading == Heading.NORTH && turnDirection == TurnDirection.RIGHT)

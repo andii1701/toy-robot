@@ -5,6 +5,7 @@ import io.kotlintest.specs.StringSpec
 import toyrobot.Commands
 import toyrobot.Coordinate
 import toyrobot.NoCommandsException
+import toyrobot.CommandsParsingException
 import toyrobot.Heading as H
 import toyrobot.TurnDirection as D
 
@@ -14,11 +15,12 @@ class CommandsTests : StringSpec() {
         val validCommands = listOf("PLACE 0,0,NORTH", "MOVE", "LEFT", "RIGHT", "REPORT")
 
         "Commands().validateCommands(commands) should return true if all passed commands are valid" {
-            Commands().validateCommands(validCommands) shouldBe true
+            Commands().validateCommands(validCommands) shouldBe Unit
         }
-        "Commands().validateCommands(commands) should return false if all passed commands are valid" {
-            Commands().validateCommands(
-                    listOf("PLACE 0,0,NORTH", "MOVE", "LEFT", "RIGHT", "BADCOMMAND")) shouldBe false
+
+        "Commands().validateCommands(commands) should throw CommandsParsingException for incorrect commands" {
+            shouldThrow<CommandsParsingException> { Commands().validateCommands(
+                    listOf("PLACE 0,0,NORTH", "MOVE", "LEFT", "RIGHT", "BADCOMMAND")) }
         }
 
         "Commands().validateCommands() should throw NoCommandsException for an empty list of commands" {
@@ -51,7 +53,18 @@ class CommandsTests : StringSpec() {
                 Commands().isValidCommand(it) shouldBe false }
         }
 
-        "Commands().turn(currentDir, newDir) should return correct new direction based on current direction"  {
+        "Commands().parsePlace(..) should throw excaption for invalid place command"  {
+            shouldThrow<CommandsParsingException> { Commands().parsePlace("PLACEWRONG 0,0,NORTH") }
+        }
+
+        "Commands().parsePlace(..) should return a valid coordinate and heading when a valid PLACE command is passes"  {
+            val p = Commands().parsePlace("PLACE 1,2,NORTH")
+            p.first shouldBe 1
+            p.second shouldBe 2
+            p.third shouldBe H.NORTH
+        }
+
+        "Commands().turn(currentDir, newDir) should return correct new heading based on current direction"  {
             Commands().turn(H.NORTH, D.LEFT) shouldBe H.WEST
             Commands().turn(H.NORTH, D.RIGHT) shouldBe H.EAST
             Commands().turn(H.EAST, D.LEFT) shouldBe H.NORTH
