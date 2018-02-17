@@ -4,8 +4,8 @@ package toyrobot
 class NoCommandsException(override var message:String): Exception(message)
 
 
-class SimulationController {
-    // TODO move all commands methods into a commands class
+class Commands {
+
     fun validateCommands(commands: List<String>):Boolean {
         if (commands.isEmpty()) throw NoCommandsException("List of commands is empty")
 
