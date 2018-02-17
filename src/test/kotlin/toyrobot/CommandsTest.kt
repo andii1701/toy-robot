@@ -3,6 +3,7 @@ import io.kotlintest.matchers.shouldThrow
 import io.kotlintest.specs.StringSpec
 
 import toyrobot.Commands
+import toyrobot.Coordinate
 import toyrobot.NoCommandsException
 import toyrobot.Heading as H
 import toyrobot.TurnDirection as D
@@ -59,6 +60,21 @@ class CommandsTests : StringSpec() {
             Commands().turn(H.SOUTH, D.RIGHT) shouldBe H.WEST
             Commands().turn(H.WEST, D.LEFT) shouldBe H.SOUTH
             Commands().turn(H.WEST, D.RIGHT) shouldBe H.NORTH
+        }
+
+        "Commands().move(...) should return a Coordinate object containing the coodinate of where the move will end"  {
+            var c = Commands().move(Coordinate(0,0), H.NORTH)
+            c.x shouldBe 0
+            c.y shouldBe 1
+            c = Commands().move(Coordinate(0,0), H.EAST)
+            c.x shouldBe 1
+            c.y shouldBe 0
+            c = Commands().move(Coordinate(0,0), H.SOUTH)
+            c.x shouldBe 0
+            c.y shouldBe -1
+            c = Commands().move(Coordinate(0,0), H.WEST)
+            c.x shouldBe -1
+            c.y shouldBe 0
         }
     }
 }

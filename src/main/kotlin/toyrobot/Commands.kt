@@ -1,6 +1,6 @@
 package toyrobot
 
-import java.security.cert.TrustAnchor
+import java.awt.HeadlessException
 
 
 class NoCommandsException(override var message:String): Exception(message)
@@ -13,6 +13,10 @@ enum class TurnDirection { LEFT, RIGHT }
 
 
 class Commands {
+
+    private val moveByNumberOfUnits = 1
+    private val U = moveByNumberOfUnits
+
 
     fun validateCommands(commands: List<String>):Boolean {
         if (commands.isEmpty()) throw NoCommandsException("List of commands is empty")
@@ -50,9 +54,15 @@ class Commands {
         else if (currentHeading == Heading.WEST && turnDirection == TurnDirection.RIGHT)
             return Heading.NORTH
         else throw Exception("Invalid heading or direction")
-
-
     }
+
+    fun move(c: Coordinate, heading: Heading): Coordinate = when (heading) {
+            Heading.NORTH -> Coordinate(c.x, c.y + U)
+            Heading.EAST -> Coordinate(c.x + U, c.y)
+            Heading.SOUTH -> Coordinate(c.x, c.y - U)
+            Heading.WEST -> Coordinate(c.x - U, c.y)
+    }
+
 
     private fun isValidPlaceCommand(command: String):
             Boolean = Regex("""PLACE \d+,\d+,(NORTH|SOUTH|EAST|WEST)""").matches(command)
