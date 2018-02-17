@@ -1,0 +1,4 @@
+package toyrobot
+
+class SimulationControllerIntegrationTests {
+}
