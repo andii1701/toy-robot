@@ -18,10 +18,7 @@ class Robot(private var tableTop: TableTop)  {
 
     fun report(): String? = if (this.placed()) "${v?.x},${v?.y} and ${v?.heading}" else null
 
-    fun place(x: Int, y: Int, heading: Heading) {
-        if (!tableTop.isOn(x, y)) return
-        v = SimpleVector(x, y, heading)
-    }
+    fun place(v: SimpleVector) { if (tableTop.isOn(v.x, v.y)) this.v = v.copy() }
 
     fun turn(turnDirection: TurnDirection) { v?.turn(turnDirection) }
 

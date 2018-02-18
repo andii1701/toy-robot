@@ -13,10 +13,7 @@ class SimulationController(private var robot: Robot, private val commands: List<
     fun run() {
 
         commands.forEach {
-            if (it.startsWith("PLACE")) {
-                val p = parsePlaceCommand(it)
-                robot.place(p.x, p.y, p.heading)
-            }
+            if (it.startsWith("PLACE")) { robot.place(parsePlaceCommand(it)) }
 
             if (robot.placed()) when (it) {
                 "REPORT" -> report()
