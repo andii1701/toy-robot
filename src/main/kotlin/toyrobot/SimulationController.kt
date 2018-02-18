@@ -1,6 +1,6 @@
 package toyrobot
 
-import toyrobot.commandParser.parsePlace
+import toyrobot.commandParser.parsePlaceCommand
 import toyrobot.commandParser.validateCommands
 
 
@@ -14,9 +14,8 @@ class SimulationController(private var robot: Robot, private val commands: List<
 
         commands.forEach {
             if (it.startsWith("PLACE")) {
-                // TODO unreadable
-                val p = parsePlace(it)
-                robot.place(p.first, p.second, p.third)
+                val p = parsePlaceCommand(it)
+                robot.place(p.x, p.y, p.heading)
             }
 
             if (robot.placed()) when (it) {

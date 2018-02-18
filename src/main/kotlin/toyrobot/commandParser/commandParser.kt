@@ -1,6 +1,7 @@
 package toyrobot.commandParser
 
 import toyrobot.Heading
+import toyrobot.SimpleVector
 
 class CommandsParsingException(override var message:String): Exception(message)
 class NoCommandsException(override var message:String): Exception(message)
@@ -8,8 +9,9 @@ class NoCommandsException(override var message:String): Exception(message)
 
 fun validateCommands(commands: List<String>) {
     if (commands.isEmpty()) throw NoCommandsException("List of commands is empty")
-        commands.forEach { if (!isValidCommand(it)) { throw CommandsParsingException("Error could not parse command: '$it'")
-        } }
+    commands.forEach {
+        if (!isValidCommand(it)) { throw CommandsParsingException("Error could not parse command: '$it'") }
+    }
 }
 
 fun isValidPlaceCommand(command: String):
@@ -25,9 +27,9 @@ fun isValidCommand(command: String): Boolean  {
         }
 }
 
-fun parsePlace(cmd: String): Triple<Int, Int, Heading>  {
+fun parsePlaceCommand(cmd: String): SimpleVector  {
     if (!isValidPlaceCommand(cmd)) throw CommandsParsingException("Error could not parse command: $cmd")
         // TODO convert to regex group
     val s = cmd.split(',')
-    return Triple(s[0].removePrefix("PLACE ").toInt(),s[1].toInt(), Heading.valueOf(s[2]))
+    return SimpleVector(s[0].removePrefix("PLACE ").toInt(),s[1].toInt(), Heading.valueOf(s[2]))
 }

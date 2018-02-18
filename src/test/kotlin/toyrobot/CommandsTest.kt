@@ -4,7 +4,7 @@ import io.kotlintest.specs.StringSpec
 
 import toyrobot.commandParser.validateCommands
 import toyrobot.commandParser.isValidCommand
-import toyrobot.commandParser.parsePlace
+import toyrobot.commandParser.parsePlaceCommand
 import toyrobot.commandParser.NoCommandsException
 import toyrobot.commandParser.CommandsParsingException
 import toyrobot.Heading as H
@@ -54,15 +54,15 @@ class CommandsTests : StringSpec() {
                     "").forEach { isValidCommand(it) shouldBe false }
         }
 
-        "parsePlace(..) should throw excaption for invalid place command"  {
-            shouldThrow<CommandsParsingException> { parsePlace("PLACEWRONG 0,0,NORTH") }
+        "parsePlaceCommand(..) should throw exception for invalid place command"  {
+            shouldThrow<CommandsParsingException> { parsePlaceCommand("PLACEWRONG 0,0,NORTH") }
         }
 
-        "parsePlace(..) should return a valid coordinate and heading when a valid PLACE command is passes"  {
-            val p = parsePlace("PLACE 1,2,NORTH")
-            p.first shouldBe 1
-            p.second shouldBe 2
-            p.third shouldBe H.NORTH
+        "parsePlaceCommand(..) should return a valid coordinate and heading when a valid PLACE command is passes"  {
+            val v = parsePlaceCommand("PLACE 1,2,NORTH")
+            v.x shouldBe 1
+            v.y shouldBe 2
+            v.heading shouldBe H.NORTH
         }
     }
 }
