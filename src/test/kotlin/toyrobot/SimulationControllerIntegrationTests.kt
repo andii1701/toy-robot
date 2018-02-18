@@ -27,7 +27,7 @@ class SimulationControllerIntegrationTests : StringSpec() {
             sim.lastReport() shouldBe "1,2 and EAST"
         }
 
-        "Verify place, move and report works"  {
+        "Verify place, move and report works, this is example A as specified in PROBLEM.md"  {
             val sim = SimulationController(Robot(tableTop), listOf("PLACE 0,0,NORTH", "MOVE", "REPORT"), Commands())
             sim.lastReport() shouldBe "0,1 and NORTH"
         }
@@ -46,6 +46,18 @@ class SimulationControllerIntegrationTests : StringSpec() {
             val sim = SimulationController(Robot(tableTop), listOf(
                     "PLACE 5,0,WEST", "LEFT", "MOVE", "REPORT", "PLACE 0,0,NORTH", "REPORT"), Commands())
             sim.lastReport() shouldBe "0,0 and NORTH"
+        }
+
+        "Verify example B in PROBLEM.md"  {
+            val sim = SimulationController(Robot(tableTop), listOf(
+            "PLACE 0,0,NORTH", "LEFT", "REPORT"), Commands())
+            sim.lastReport() shouldBe "0,0 and WEST"
+        }
+
+        "Verify example C in PROBLEM.md"  {
+            val sim = SimulationController(Robot(tableTop), listOf(
+                    "PLACE 1,2,EAST", "MOVE", "MOVE", "LEFT", "MOVE", "REPORT"), Commands())
+            sim.lastReport() shouldBe "3,3 and NORTH"
         }
 
     }
