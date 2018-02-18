@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 //import toyrobot.TableTop as TableTop
 
 fun main(args: Array<String>) {
-    val commandsFile = if(args.isNotEmpty()) args[-1] else  "commands.txt"
+    val commandsFile = if(args.isNotEmpty()) args.last() else  "commands.txt"
     val commands = extractCommandsFrom(commandsFile)
 
     val tableTop = TableTop(5, 5)

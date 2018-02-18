@@ -35,7 +35,7 @@ class Commands {
     fun validateCommands(commands: List<String>) {
         if (commands.isEmpty()) throw NoCommandsException("List of commands is empty")
 
-        commands.forEach { if (!isValidCommand(it)) { throw CommandsParsingException("Error could not parse commands: $commands") } }
+        commands.forEach { if (!isValidCommand(it)) { throw CommandsParsingException("Error could not parse command: '$it'") } }
     }
 
     fun isValidCommand(command: String): Boolean  {
