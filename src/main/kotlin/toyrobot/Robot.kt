@@ -8,8 +8,6 @@ class Robot(private var tableTop: TableTop)  {
 
     private var v: SimpleVector? = null
 
-    private val moveByNumberOfUnits = 1
-
     fun getX(): Int? = v?.x
 
     fun getY(): Int? = v?.y
@@ -26,6 +24,7 @@ class Robot(private var tableTop: TableTop)  {
     }
 
     fun turn(turnDirection: TurnDirection) {
+        // TODO move into SimpleVector
         v?.heading = when(turnDirection)  {
             TurnDirection.LEFT -> previousHeading(v!!.heading)
             TurnDirection.RIGHT -> nextHeading(v!!.heading)
@@ -35,19 +34,8 @@ class Robot(private var tableTop: TableTop)  {
     fun move() {
         if (!this.placed()) return
 
-        var newX = v!!.x
-        var newY = v!!.y
-
-        when (v?.heading) {
-            Heading.NORTH -> newY += moveByNumberOfUnits
-            Heading.EAST ->  newX += moveByNumberOfUnits
-            Heading.SOUTH -> newY -= moveByNumberOfUnits
-            Heading.WEST -> newX -= moveByNumberOfUnits
-        }
-
-        if (tableTop.onTable(newX, newY))  {
-            v?.x = newX
-            v?.y = newY
-        }
+        var newV = this.v!!.copy()
+        newV.move()
+        if (tableTop.onTable(newV.x, newV.y)) this.v = newV
     }
 }

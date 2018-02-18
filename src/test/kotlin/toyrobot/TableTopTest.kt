@@ -9,9 +9,15 @@ import toyrobot.TableTopException
 class TableTopTests : StringSpec() {
     init {
 
-        "TableTop(xLength = 5, yLength = 5) should set xLength to 5 and yLength to 6"  {
-            val t = TableTop(xLength = 5, yLength = 6)
+        "TableTop() should set xLength to 5 and yLength to 5 by default"  {
+            val t = TableTop()
             t.xLength shouldBe 5
+            t.yLength shouldBe 5
+        }
+
+        "TableTop(xLength = 7, yLength = 6) should set xLength to 7 and yLength to 6"  {
+            val t = TableTop(xLength = 7, yLength = 6)
+            t.xLength shouldBe 7
             t.yLength shouldBe 6
         }
 

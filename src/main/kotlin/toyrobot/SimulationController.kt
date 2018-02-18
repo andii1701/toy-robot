@@ -5,6 +5,7 @@ import toyrobot.commandParser.validateCommands
 
 
 class SimulationController(private var robot: Robot, private val commands: List<String>)  {
+
     private var lastReport: String? = null
 
     init { validateCommands(commands) }
@@ -32,8 +33,6 @@ class SimulationController(private var robot: Robot, private val commands: List<
         println(lastReport)
     }
 
-    // TODO move to getter
     fun lastReport(): String? = lastReport
-
 
 }

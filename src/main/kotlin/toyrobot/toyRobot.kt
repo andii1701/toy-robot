@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     val commandsFile = if(args.isNotEmpty()) args.last() else  "commands.txt"
     val commands = extractCommandsFrom(commandsFile)
 
-    val tableTop = TableTop(5, 5)
+    val tableTop = TableTop()
     val robot = Robot(tableTop)
     val sim = SimulationController(robot, commands)
     sim.run()

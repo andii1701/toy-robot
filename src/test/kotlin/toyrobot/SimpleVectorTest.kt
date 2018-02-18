@@ -14,10 +14,42 @@ class SimpleVectorTests : StringSpec() {
         }
 
         "SimpleVector(x, y, h) x and y can be negative"  {
-            val c = SimpleVector(-1,-2, Heading.SOUTH)
-            c.x shouldBe -1
-            c.y shouldBe -2
-            c.heading shouldBe Heading.SOUTH
+            val v = SimpleVector(-1,-2, Heading.SOUTH)
+            v.x shouldBe -1
+            v.y shouldBe -2
+            v.heading shouldBe Heading.SOUTH
+        }
+
+        "SimpleVector().move() should move NORTH if the direction is NORTH" {
+            val v = SimpleVector(0,0, Heading.NORTH)
+            v.move()
+            v.x shouldBe 0
+            v.y shouldBe 1
+            v.heading shouldBe Heading.NORTH
+        }
+
+        "SimpleVector().move() should move EAST if the direction is EAST" {
+            val v = SimpleVector(0,0, Heading.EAST)
+            v.move()
+            v.x shouldBe 1
+            v.y shouldBe 0
+            v.heading shouldBe Heading.EAST
+        }
+
+        "SimpleVector().move() should move SOUTH if the direction is SOUTH" {
+            val v = SimpleVector(0,0, Heading.SOUTH)
+            v.move()
+            v.x shouldBe 0
+            v.y shouldBe -1
+            v.heading shouldBe Heading.SOUTH
+        }
+
+        "SimpleVector().move() should move WEST if the direction is WEST" {
+            val v = SimpleVector(0,0, Heading.WEST)
+            v.move()
+            v.x shouldBe -1
+            v.y shouldBe 0
+            v.heading shouldBe Heading.WEST
         }
     }
 }

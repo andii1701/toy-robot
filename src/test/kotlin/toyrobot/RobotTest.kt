@@ -91,6 +91,12 @@ class RobotTest : StringSpec() {
             r.getHeading() shouldBe Heading.NORTH
         }
 
+        "Robot().turn(newDir) should do nothing if robot is not placed"  {
+            val r = Robot(tableTop)
+            r.turn(TurnDirection.LEFT)
+            r.placed() shouldBe false
+        }
+
         "Robot().move(...) should set the robot to the correct position and not change the heading"  {
             val r = Robot(tableTop)
             r.place(1,1, Heading.NORTH)
