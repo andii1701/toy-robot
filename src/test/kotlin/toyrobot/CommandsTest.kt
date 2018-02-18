@@ -19,22 +19,22 @@ class CommandsTests : StringSpec() {
             validateCommands(validCommands) shouldBe Unit
         }
 
-        "Commands().validateCommands(commands) should throw CommandsParsingException for incorrect commands" {
+        "validateCommands(commands) should throw CommandsParsingException for incorrect commands" {
             shouldThrow<CommandsParsingException> {
                 validateCommands(
                         listOf("PLACE 0,0,NORTH", "MOVE", "LEFT", "RIGHT", "BADCOMMAND"))
             }
         }
 
-        "Commands().validateCommands() should throw NoCommandsException for an empty list of commands" {
+        "validateCommands() should throw NoCommandsException for an empty list of commands" {
             shouldThrow<NoCommandsException> { validateCommands(listOf()) }
         }
 
-        "Commands().isValidCommand(cmd) should return true for valid commands" {
+        "isValidCommand(cmd) should return true for valid commands" {
             validCommands.forEach { isValidCommand(it) shouldBe true }
         }
 
-        "Commands().isValidCommand(cmd) should return true for all valid PLACE x,y,F command" {
+        "isValidCommand(cmd) should return true for all valid PLACE x,y,F command" {
             listOf("PLACE 5,5,NORTH",
                     "PLACE 5,5,SOUTH",
                     "PLACE 5,5,EAST",
@@ -42,7 +42,7 @@ class CommandsTests : StringSpec() {
                     "PLACE 00050,000,WEST").forEach { isValidCommand(it) shouldBe true }
         }
 
-        "Commands().isValidCommand(cmd) should return false for all invalid PLACE x,y,F commands" {
+        "isValidCommand(cmd) should return false for all invalid PLACE x,y,F commands" {
             listOf("PLAE 5,5,NORTH",
                     "PLACE -5,5,SOUTH",
                     "PLACE 5,-5,EAST",
@@ -54,11 +54,11 @@ class CommandsTests : StringSpec() {
                     "").forEach { isValidCommand(it) shouldBe false }
         }
 
-        "Commands().parsePlace(..) should throw excaption for invalid place command"  {
+        "parsePlace(..) should throw excaption for invalid place command"  {
             shouldThrow<CommandsParsingException> { parsePlace("PLACEWRONG 0,0,NORTH") }
         }
 
-        "Commands().parsePlace(..) should return a valid coordinate and heading when a valid PLACE command is passes"  {
+        "parsePlace(..) should return a valid coordinate and heading when a valid PLACE command is passes"  {
             val p = parsePlace("PLACE 1,2,NORTH")
             p.first shouldBe 1
             p.second shouldBe 2

@@ -73,7 +73,7 @@ class RobotTest : StringSpec() {
             shouldThrow<UnexpectedCommandException> { Robot(tableTop).report()}
         }
 
-        "Commands().turn(currentDir, newDir) should return correct new heading based on current direction"  {
+        "Robot().turn(newDir) should return correct new heading based on current direction"  {
             val r = Robot(tableTop)
             r.place(0,0, Heading.NORTH)
             r.turn(TurnDirection.LEFT)
@@ -94,7 +94,7 @@ class RobotTest : StringSpec() {
             r.heading shouldBe Heading.NORTH
         }
 
-        "Commands().move(...) should set the robot to the correct position and not change the heading"  {
+        "Robot().move(...) should set the robot to the correct position and not change the heading"  {
             val r = Robot(tableTop)
             r.place(1,1, Heading.NORTH)
             r.move()
@@ -121,7 +121,7 @@ class RobotTest : StringSpec() {
             r.heading shouldBe Heading.WEST
         }
 
-        "Commands().move(...) should be ignored if the robot will move off the west edge of the table"  {
+        "Robot().move(...) should be ignored if the robot will move off the west edge of the table"  {
             val r = Robot(tableTop)
             r.place(0, 0, Heading.WEST)
             r.move()
@@ -130,7 +130,7 @@ class RobotTest : StringSpec() {
             r.heading shouldBe Heading.WEST
         }
 
-        "Commands().move(...) should be ignored if the robot will move off the north edge of the table"  {
+        "Robot().move(...) should be ignored if the robot will move off the north edge of the table"  {
             val r = Robot(tableTop)
             r.place(0, 4, Heading.NORTH)
             r.move()
@@ -139,7 +139,7 @@ class RobotTest : StringSpec() {
             r.heading shouldBe Heading.NORTH
         }
 
-        "Commands().move(...) should be ignored if the robot will move off the east edge of the table"  {
+        "Robot().move(...) should be ignored if the robot will move off the east edge of the table"  {
             val r = Robot(tableTop)
             r.place(4, 4, Heading.EAST)
             r.move()
@@ -148,7 +148,7 @@ class RobotTest : StringSpec() {
             r.heading shouldBe Heading.EAST
         }
 
-        "Commands().move(...) should be ignored if the robot will move off the south edge of the table"  {
+        "Robot().move(...) should be ignored if the robot will move off the south edge of the table"  {
             val r = Robot(tableTop)
             r.place(4, 0, Heading.SOUTH)
             r.move()
