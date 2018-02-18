@@ -20,5 +20,3 @@ fun previousHeading(h: Heading): Heading = when(h) {
 
 
 enum class TurnDirection { LEFT, RIGHT }
-
-

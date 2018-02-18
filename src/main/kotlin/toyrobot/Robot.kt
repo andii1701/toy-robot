@@ -5,37 +5,40 @@ class UnexpectedCommandException(override var message:String): Exception(message
 
 
 class Robot(private var tableTop: TableTop)  {
-    var x: Int? = null
-    var y: Int? = null
-    var heading: Heading? = null
+
+    private var v: SimpleVector? = null
 
     private val moveByNumberOfUnits = 1
 
-    // TODO is there a more kotlinish way to do this
-    fun placed(): Boolean = x != null && y != null && heading != null
+    fun getX(): Int? = v?.x
 
-    fun report(): String = if (this.placed()) "$x,$y and $heading" else
-        throw UnexpectedCommandException("Error report should not be called before robot is placed.")
+    fun getY(): Int? = v?.y
+
+    fun getHeading(): Heading? = v?.heading
+
+    fun placed(): Boolean = v != null
+
+    fun report(): String? = if (this.placed()) "${v?.x},${v?.y} and ${v?.heading}" else null
 
     fun place(x: Int, y: Int, heading: Heading) {
         if (!tableTop.onTable(x, y)) return
-        this.x = x
-        this.y = y
-        this.heading = heading
+        v = SimpleVector(x, y, heading)
     }
 
     fun turn(turnDirection: TurnDirection) {
-        heading = when(turnDirection)  {
-            TurnDirection.LEFT -> previousHeading(heading!!)
-            TurnDirection.RIGHT -> nextHeading(heading!!)
+        v?.heading = when(turnDirection)  {
+            TurnDirection.LEFT -> previousHeading(v!!.heading)
+            TurnDirection.RIGHT -> nextHeading(v!!.heading)
         }
     }
 
     fun move() {
-        var newX = x!!
-        var newY = y!!
+        if (!this.placed()) return
 
-        when (heading) {
+        var newX = v!!.x
+        var newY = v!!.y
+
+        when (v?.heading) {
             Heading.NORTH -> newY += moveByNumberOfUnits
             Heading.EAST ->  newX += moveByNumberOfUnits
             Heading.SOUTH -> newY -= moveByNumberOfUnits
@@ -43,8 +46,8 @@ class Robot(private var tableTop: TableTop)  {
         }
 
         if (tableTop.onTable(newX, newY))  {
-            x = newX
-            y = newY
+            v?.x = newX
+            v?.y = newY
         }
     }
 }
