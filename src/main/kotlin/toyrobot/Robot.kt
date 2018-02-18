@@ -19,7 +19,7 @@ class Robot(private var tableTop: TableTop)  {
     fun report(): String? = if (this.placed()) "${v?.x},${v?.y} and ${v?.heading}" else null
 
     fun place(x: Int, y: Int, heading: Heading) {
-        if (!tableTop.onTable(x, y)) return
+        if (!tableTop.isOn(x, y)) return
         v = SimpleVector(x, y, heading)
     }
 
@@ -36,6 +36,6 @@ class Robot(private var tableTop: TableTop)  {
 
         var newV = this.v!!.copy()
         newV.move()
-        if (tableTop.onTable(newV.x, newV.y)) this.v = newV
+        if (tableTop.isOn(newV.x, newV.y)) this.v = newV
     }
 }
