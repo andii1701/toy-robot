@@ -1,16 +1,19 @@
 package toyrobot
 
+import toyrobot.commandParser.parsePlace
+import toyrobot.commandParser.validateCommands
 
-class SimulationController(private var robot: Robot, private val commands: List<String>, private val cmdProcessor: Commands)  {
+
+class SimulationController(private var robot: Robot, private val commands: List<String>)  {
     private var lastReport: String? = null
 
     init {
-        cmdProcessor.validateCommands(commands)
+        validateCommands(commands)
 
         commands.forEach {
             if (it.startsWith("PLACE")) {
                 // TODO unreadable
-                val p = cmdProcessor.parsePlace(it)
+                val p = parsePlace(it)
                 robot.place(p.first, p.second, p.third)
             }
 

@@ -4,7 +4,6 @@ import java.io.File
 import java.io.FileNotFoundException
 import kotlin.system.exitProcess
 
-//import toyrobot.TableTop as TableTop
 
 fun main(args: Array<String>) {
     val commandsFile = if(args.isNotEmpty()) args.last() else  "commands.txt"
@@ -12,9 +11,8 @@ fun main(args: Array<String>) {
 
     val tableTop = TableTop(5, 5)
     val robot = Robot(tableTop)
-    val commandProcessor = Commands()
     // TODO looks odd, should be a run command
-    SimulationController(robot, commands, commandProcessor)
+    SimulationController(robot, commands)
 }
 
 fun extractCommandsFrom(filename: String): MutableList<String>  {
