@@ -23,18 +23,12 @@ class Robot(private var tableTop: TableTop)  {
         v = SimpleVector(x, y, heading)
     }
 
-    fun turn(turnDirection: TurnDirection) {
-        // TODO move into SimpleVector
-        v?.heading = when(turnDirection)  {
-            TurnDirection.LEFT -> previousHeading(v!!.heading)
-            TurnDirection.RIGHT -> nextHeading(v!!.heading)
-        }
-    }
+    fun turn(turnDirection: TurnDirection) { v?.turn(turnDirection) }
 
     fun move() {
         if (!this.placed()) return
 
-        var newV = this.v!!.copy()
+        val newV = this.v!!.copy()
         newV.move()
         if (tableTop.isOn(newV.x, newV.y)) this.v = newV
     }
