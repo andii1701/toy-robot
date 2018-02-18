@@ -7,8 +7,9 @@ import toyrobot.commandParser.validateCommands
 class SimulationController(private var robot: Robot, private val commands: List<String>)  {
     private var lastReport: String? = null
 
-    init {
-        validateCommands(commands)
+    init { validateCommands(commands) }
+
+    fun run() {
 
         commands.forEach {
             if (it.startsWith("PLACE")) {
