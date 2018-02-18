@@ -25,7 +25,7 @@ class SimulationController(private var robot: Robot, private val commands: List<
 
     private fun report()  {
         lastReport = robot.report()
-        print(lastReport)
+        println(lastReport)
     }
 
     // TODO move to getter

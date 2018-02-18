@@ -18,15 +18,15 @@ exiting.
 ### Compiling and running
 To compile the simulator
 
-```$ kotlinc src/main/kotlin/toyrobot -include-runtime -d toy-robot.jar```
+```$ kotlinc src/main/kotlin/toyrobot -include-runtime -d toyRobot.jar```
 
 To run the simulator with the default commands.txt file:
 
-```$ java -jar toy-robot.jar```
+```$ java -jar toyRobot.jar```
 
 To specify your own commands file:
 
-```$ java -jar toy-robot.jar <mycommandsfile>``` TODO implement this
+```$ java -jar toyRobot.jar <mycommandsfile>```
 
 See the `Description` section of PROBLEM.md for a list of valid commands and what 
 the commands do.
