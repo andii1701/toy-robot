@@ -60,5 +60,13 @@ class SimulationControllerIntegrationTests : StringSpec() {
             sim.lastReport() shouldBe "3,3 and NORTH"
         }
 
+        "Verify moving around the perimeter"  {
+            val sim = SimulationController(Robot(tableTop), listOf(
+                    "PLACE 0,0,NORTH", "MOVE", "MOVE", "MOVE", "MOVE", "RIGHT",
+                    "MOVE", "MOVE", "MOVE", "MOVE", "RIGHT",
+                    "MOVE", "MOVE", "MOVE", "MOVE", "RIGHT",
+                    "MOVE", "MOVE", "MOVE", "REPORT"), Commands())
+            sim.lastReport() shouldBe "1,0 and WEST"
+        }
     }
 }
