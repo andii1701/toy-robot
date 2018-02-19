@@ -19,14 +19,11 @@ fun validateCommands(commands: List<String>) {
     }
 }
 
-fun isValidPlaceCommand(command: String): Boolean = placeCmdRegex.matches(command)
-
 fun isValidCommand(command: String): Boolean = commandRegex.matches(command)
 
 fun parsePlaceCommand(cmd: String): SimpleVector  {
-    if (!isValidPlaceCommand(cmd)) throw CommandsParsingException("Error could not parse command: $cmd")
-
-    val l = placeCmdRegex.matchEntire(cmd)!!.groupValues
+    val l = placeCmdRegex.matchEntire(cmd)?.groupValues ?:
+        throw CommandsParsingException("Error could not parse command: $cmd")
 
     return SimpleVector(l[1].toInt(),l[2].toInt(), Heading.valueOf(l[3]))
 }
