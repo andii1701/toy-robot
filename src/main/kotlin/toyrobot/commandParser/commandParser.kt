@@ -3,6 +3,7 @@ package toyrobot.commandParser
 import toyrobot.Heading
 import toyrobot.SimpleVector
 
+
 class CommandsParsingException(override var message:String): Exception(message)
 class NoCommandsException(override var message:String): Exception(message)
 
@@ -18,10 +19,9 @@ fun isValidPlaceCommand(command: String):
         Boolean = Regex("""PLACE \d+,\d+,(NORTH|SOUTH|EAST|WEST)""").matches(command)
 
 fun isValidCommand(command: String): Boolean  {
-
     if (isValidPlaceCommand(command)) { return true }
 
-    return when (command)  {
+    return when (command) {
         "MOVE", "LEFT", "RIGHT", "REPORT" -> true
         else -> false
         }

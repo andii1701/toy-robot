@@ -4,9 +4,11 @@ import java.io.File
 import java.io.FileNotFoundException
 import kotlin.system.exitProcess
 
+const val defaultCommandsFilename =  "commands.txt"
+
 
 fun main(args: Array<String>) {
-    val commandsFile = if(args.isNotEmpty()) args.last() else  "commands.txt"
+    val commandsFile = if(args.isNotEmpty()) args.last() else defaultCommandsFilename
     val commands = extractCommandsFrom(commandsFile)
 
     val tableTop = TableTop()

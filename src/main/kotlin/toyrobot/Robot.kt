@@ -1,9 +1,6 @@
 package toyrobot
 
 
-class UnexpectedCommandException(override var message:String): Exception(message)
-
-
 class Robot(private var tableTop: TableTop)  {
 
     private var v: SimpleVector? = null
@@ -21,8 +18,8 @@ class Robot(private var tableTop: TableTop)  {
     fun move() {
         if (!this.placed()) return
 
-        val newV = this.v!!.copy()
-        newV.move()
-        if (tableTop.isOn(newV.x, newV.y)) this.v = newV
+        val tmpV = this.v!!.copy()
+        tmpV.move()
+        if (tableTop.isOn(tmpV.x, tmpV.y)) this.v = tmpV
     }
 }

@@ -11,7 +11,6 @@ class SimulationController(private var robot: Robot, private val commands: List<
     init { validateCommands(commands) }
 
     fun run() {
-
         commands.forEach {
             if (it.startsWith("PLACE")) { robot.place(parsePlaceCommand(it)) }
 
@@ -30,5 +29,4 @@ class SimulationController(private var robot: Robot, private val commands: List<
     }
 
     fun lastReport(): String? = lastReport
-
 }
