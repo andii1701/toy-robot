@@ -8,11 +8,7 @@ class Robot(private var tableTop: TableTop)  {
 
     private var v: SimpleVector? = null
 
-    fun getX(): Int? = v?.x
-
-    fun getY(): Int? = v?.y
-
-    fun getHeading(): Heading? = v?.heading
+    fun getVec(): SimpleVector? = v?.copy()
 
     fun placed(): Boolean = v != null
 
