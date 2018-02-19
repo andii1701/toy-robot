@@ -24,7 +24,7 @@ data class SimpleVector(var x: Int, var y: Int, var heading: Heading) {
 
         this.heading = when(turnDirection)  {
             TurnDirection.RIGHT -> Heading.values()[(o + 1) % s]
-            // Need extra 'if' here because "-1 % 4 == -1"?!!
+            // Need extra 'if' because "-1 % 4 == -1"?!!
             TurnDirection.LEFT -> Heading.values()[(if (o == 0) s - 1 else (o - 1) % s)]
         }
     }

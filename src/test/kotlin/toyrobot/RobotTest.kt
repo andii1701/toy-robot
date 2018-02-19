@@ -81,7 +81,7 @@ class RobotTest : StringSpec() {
         "Robot().report() should return a string containing the report of the robot"  {
             val r = Robot(tableTop)
             r.place(SimpleVector(3, 4, Heading.SOUTH))
-            r.report() shouldBe "3,4 and SOUTH"
+            r.report() shouldBe "3,4,SOUTH"
         }
 
         "Robot().report() should do nothing if called before robot is placed"  {
