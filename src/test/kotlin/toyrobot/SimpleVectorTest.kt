@@ -47,5 +47,25 @@ class SimpleVectorTests : StringSpec() {
             v.move()
             (v == SimpleVector(-1,0, Heading.WEST)) shouldBe true
         }
+
+        "SimpleVector.turn(newDir) should return correct new heading based on current direction"  {
+            val v = SimpleVector(0,0, Heading.NORTH)
+            v.turn(TurnDirection.LEFT)
+            v.heading shouldBe Heading.WEST
+            v.turn(TurnDirection.LEFT)
+            v.heading shouldBe Heading.SOUTH
+            v.turn(TurnDirection.LEFT)
+            v.heading shouldBe Heading.EAST
+            v.turn(TurnDirection.LEFT)
+            v.heading shouldBe Heading.NORTH
+            v.turn(TurnDirection.RIGHT)
+            v.heading shouldBe Heading.EAST
+            v.turn(TurnDirection.RIGHT)
+            v.heading shouldBe Heading.SOUTH
+            v.turn(TurnDirection.RIGHT)
+            v.heading shouldBe Heading.WEST
+            v.turn(TurnDirection.RIGHT)
+            v.heading shouldBe Heading.NORTH
+        }
     }
 }

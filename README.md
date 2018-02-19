@@ -65,4 +65,7 @@ The following are valid simulation commands
 - REPORT will announce the X,Y and F of the robot on stdout.
 - Test commands files can be found in the test_commands directory.
 
+### Test command files
+There are more example commands in the test_commands directory
 
+To run all the test_commands run the script ./run_all_examples TODO

@@ -12,35 +12,21 @@ enum class TurnDirection { LEFT, RIGHT }
     heading. */
 data class SimpleVector(var x: Int, var y: Int, var heading: Heading) {
 
-    fun move(units:Int = defaultUnits) {
-        when (this.heading) {
+    fun move(units:Int = defaultUnits) = when (this.heading) {
             Heading.NORTH -> this.y += units
             Heading.EAST ->  this.x += units
             Heading.SOUTH -> this.y -= units
             Heading.WEST -> this.x -= units
-        }
     }
 
     fun turn(turnDirection: TurnDirection)  {
-
-        // TODO make this more concise
-        fun nextHeading(): Heading = when(this.heading) {
-            Heading.NORTH -> Heading.EAST
-            Heading.EAST -> Heading.SOUTH
-            Heading.SOUTH -> Heading.WEST
-            Heading.WEST -> Heading.NORTH
-        }
-
-        fun previousHeading(): Heading = when(this.heading) {
-            Heading.NORTH -> Heading.WEST
-            Heading.EAST -> Heading.NORTH
-            Heading.SOUTH -> Heading.EAST
-            Heading.WEST -> Heading.SOUTH
-        }
+        val o = this.heading.ordinal
+        val s = Heading.values().size
 
         this.heading = when(turnDirection)  {
-            TurnDirection.LEFT -> previousHeading()
-            TurnDirection.RIGHT -> nextHeading()
+            TurnDirection.RIGHT -> Heading.values()[(o + 1) % s]
+            // Need extra if statement here because '-1 % 4 == -1'?!!
+            TurnDirection.LEFT -> Heading.values()[(if (o == 0) s - 1 else (o - 1) % s)]
         }
     }
 }
