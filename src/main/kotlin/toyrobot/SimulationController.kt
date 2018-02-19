@@ -15,7 +15,7 @@ class SimulationController(private var robot: Robot, private val commands: List<
             if (it.startsWith("PLACE")) { robot.place(parsePlaceCommand(it)) }
 
             if (robot.placed()) when (it) {
-                "REPORT" -> report()
+                "REPORT" -> this.report()
                 "LEFT" -> robot.turn(TurnDirection.LEFT)
                 "RIGHT" -> robot.turn(TurnDirection.RIGHT)
                 "MOVE" -> robot.move()
@@ -24,9 +24,9 @@ class SimulationController(private var robot: Robot, private val commands: List<
     }
 
     private fun report()  {
-        lastReport = robot.report()
-        println(lastReport)
+        this.lastReport = robot.report()
+        println(this.lastReport)
     }
 
-    fun lastReport(): String? = lastReport
+    fun lastReport(): String? = this.lastReport
 }

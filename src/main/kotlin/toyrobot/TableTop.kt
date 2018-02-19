@@ -8,7 +8,7 @@ const val defaultXLength = 5
 const val defaultYLength = 5
 
 
-class TableTop( val xLength: Int = defaultXLength, val yLength: Int = defaultYLength) {
+data class TableTop( val xLength: Int = defaultXLength, val yLength: Int = defaultYLength) {
 
     init { if (xLength < 0 || yLength < 0) throw TableTopException("Table dimensions must not be negative") }
 

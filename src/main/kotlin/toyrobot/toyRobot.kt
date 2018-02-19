@@ -6,9 +6,8 @@ import kotlin.system.exitProcess
 
 const val defaultCommandsFilename =  "commands.txt"
 
-
 fun main(args: Array<String>) {
-    val commandsFile = if(args.isNotEmpty()) args.last() else defaultCommandsFilename
+    val commandsFile = if (args.isNotEmpty()) args.last() else defaultCommandsFilename
     val commands = extractCommandsFrom(commandsFile)
 
     val tableTop = TableTop()
@@ -20,9 +19,7 @@ fun main(args: Array<String>) {
 fun extractCommandsFrom(filename: String): MutableList<String>  {
     val commands = mutableListOf<String>()
 
-    try {
-        File(filename).useLines { lines -> lines.forEach { commands.add(it) } }
-    }
+    try { File(filename).useLines { lines -> lines.forEach { commands.add(it) } } }
     catch(e: FileNotFoundException)  {
         println("Error $filename not found.")
         exitProcess(1)
