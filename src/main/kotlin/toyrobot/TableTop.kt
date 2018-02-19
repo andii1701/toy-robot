@@ -12,5 +12,5 @@ data class TableTop( val xLength: Int = defaultXLength, val yLength: Int = defau
 
     init { if (xLength < 0 || yLength < 0) throw TableTopException("Table dimensions must not be negative") }
 
-    fun isOn(x: Int, y: Int): Boolean = x in 0 until xLength && y in 0 until yLength
+    fun isOn(x: Int?, y: Int?): Boolean = x in 0 until xLength && y in 0 until yLength
 }

@@ -18,8 +18,8 @@ class Robot(private var tableTop: TableTop)  {
     fun move() {
         if (!this.placed()) return
 
-        val tmp = this.v!!.copy()
-        tmp.move()
-        if (tableTop.isOn(tmp.x, tmp.y)) this.v = tmp
+        val tmp = this.v?.copy()
+        tmp?.move()
+        if (tableTop.isOn(tmp?.x, tmp?.y))  this.v = tmp
     }
 }

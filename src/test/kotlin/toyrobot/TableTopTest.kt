@@ -35,6 +35,9 @@ class TableTopTests : StringSpec() {
             t.isOn(-1,0) shouldBe false
             t.isOn(0,-1) shouldBe false
             t.isOn(-1,-1) shouldBe false
+            t.isOn( null, null) shouldBe false
+            t.isOn( 1, null) shouldBe false
+            t.isOn( null, 1) shouldBe false
         }
 
     }
