@@ -23,6 +23,7 @@ data class SimpleVector(var x: Int, var y: Int, var heading: Heading) {
 
     fun turn(turnDirection: TurnDirection)  {
 
+        // TODO make this more concise
         fun nextHeading(): Heading = when(this.heading) {
             Heading.NORTH -> Heading.EAST
             Heading.EAST -> Heading.SOUTH
