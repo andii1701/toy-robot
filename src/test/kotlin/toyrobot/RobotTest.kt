@@ -116,20 +116,29 @@ class RobotTest : StringSpec() {
             r.placed() shouldBe false
         }
 
-        "Robot().move(...) should set the robot to the correct position and not change the heading"  {
+        "Robot().move(NORTH) should move the robot NORTH and not change the heading"  {
             val r = Robot(tableTop)
             r.place(SimpleVector(1, 2, Heading.NORTH))
             r.move()
             (r.getVec() == SimpleVector(1, 3, Heading.NORTH)) shouldBe true
+        }
 
+        "Robot().move(EAST) should move the robot EAST and not change the heading"  {
+            val r = Robot(tableTop)
             r.place(SimpleVector(1, 1, Heading.EAST))
             r.move()
             (r.getVec() == SimpleVector(2, 1, Heading.EAST)) shouldBe true
+        }
 
+        "Robot().move(SOUTH) should move the robot SOUTH and not change the heading"  {
+            val r = Robot(tableTop)
             r.place(SimpleVector(1, 2, Heading.SOUTH))
             r.move()
             (r.getVec() == SimpleVector(1, 1, Heading.SOUTH)) shouldBe true
+        }
 
+        "Robot().move(WEST) should move the robot WEST and not change the heading"  {
+            val r = Robot(tableTop)
             r.place(SimpleVector(1, 0, Heading.WEST))
             r.move()
             (r.getVec() == SimpleVector(0, 0, Heading.WEST)) shouldBe true
