@@ -3,12 +3,11 @@ package toyrobot
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldThrow
 import io.kotlintest.specs.StringSpec
-
-import toyrobot.commandParser.validateCommands
+import toyrobot.commandParser.CommandsParsingException
+import toyrobot.commandParser.NoCommandsException
 import toyrobot.commandParser.isValidCommand
 import toyrobot.commandParser.parsePlaceCommand
-import toyrobot.commandParser.NoCommandsException
-import toyrobot.commandParser.CommandsParsingException
+import toyrobot.commandParser.validateCommands
 import toyrobot.Heading as H
 
 class CommandsTests : StringSpec() {
@@ -19,7 +18,7 @@ class CommandsTests : StringSpec() {
             validateCommands(validCommands) shouldBe Unit
         }
 
-        "validateCommands(commands) should throw CommandsParsingException for incorrect commands" {
+        "validateCommands(commands) should throw CommandsParsingException for any incorrect commands" {
             shouldThrow<CommandsParsingException> {
                 validateCommands(
                         listOf("PLACE 0,0,NORTH", "MOVE", "LEFT", "RIGHT", "BADCOMMAND"))
@@ -30,7 +29,7 @@ class CommandsTests : StringSpec() {
             shouldThrow<NoCommandsException> { validateCommands(listOf()) }
         }
 
-        "isValidCommand(cmd) should return true for valid commands" {
+        "isValidCommand(cmd) should return true for all valid commands" {
             validCommands.forEach { isValidCommand(it) shouldBe true }
         }
 
@@ -49,20 +48,19 @@ class CommandsTests : StringSpec() {
                     "PLACE -5,-5,WEST",
                     "PLACE -5,-5,NORTHWEST",
                     "PLACE 00,-00050,EAST",
+                    "PLACE -0,0,EAST",
                     "PLACE 5,5,NORTH ",
                     " PLACE 5,5,NORTH",
                     "").forEach { isValidCommand(it) shouldBe false }
         }
 
-        "parsePlaceCommand(..) should throw exception for invalid place command" {
+        "parsePlaceCommand() should throw exception for an invalid place command" {
             shouldThrow<CommandsParsingException> { parsePlaceCommand("PLACEWRONG 0,0,NORTH") }
         }
 
-        "parsePlaceCommand(..) should return a valid coordinate and heading when a valid PLACE command is passes" {
+        "parsePlaceCommand() should return a valid coordinate and heading when a valid PLACE command is passed" {
             val v = parsePlaceCommand("PLACE 1,2,NORTH")
-            v.x shouldBe 1
-            v.y shouldBe 2
-            v.heading shouldBe H.NORTH
+            (v == SimpleVector(1, 2, H.NORTH))
         }
     }
 }

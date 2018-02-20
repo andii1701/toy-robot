@@ -23,7 +23,7 @@ class TableTopTests : StringSpec() {
             shouldThrow<TableTopException> { TableTop(xLength = 0, yLength = -1) }
         }
 
-        "TableTop(...).isOn(x, y) method should return true if x and y are coordinates are on the table" {
+        "TableTop().isOn(x, y) method should return true if x and y are coordinates are on the table" {
             val t = TableTop(xLength = 5, yLength = 5)
             t.isOn(0, 0) shouldBe true
             t.isOn(4, 4) shouldBe true
