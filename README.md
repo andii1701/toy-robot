@@ -19,8 +19,8 @@ result in the program exiting.
 * The simulation may work on other platforms the JVM can run on eg, linux or
 Windows, but providing documentation on how to do this is out of scope.
 * The table dimensions can be hardcoded in code.
-* The command PLACE X,Y,F, X and Y are assumed to be positive. Using negative X and Y
-values will result in a application error.
+* The command "PLACE X,Y,F" X and Y are assumed to be positive. Using negative X and Y
+values will result in the application terminating with an error.
 
 ## Getting Started
 
@@ -54,7 +54,7 @@ To run the unit and integration tests:
 
 To run the black box test:
 ```./test_toyRobot```
-This required the project to be compiled. See above.
+This requires the project to be compiled. See above.
 
 ## Simulation commands
 The commands file contains a list of commands, one per line.
