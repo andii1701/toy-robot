@@ -41,10 +41,14 @@ To specify your own commands file:
 See below for a list of valid commands and what
 the commands do.
 
-### Running unit tests
+### Testing
 
+To run the program unit and integration tests:
 ```./gradew test``` TODO check this is best practice
 
+To run the black box test:
+```./test_toyRobot```
+This required the project to be compiled. See above.
 
 ## Simulation commands
 The commands file contains a list of commands, one per line.

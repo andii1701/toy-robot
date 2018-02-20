@@ -1,0 +1,13 @@
+#!/bin/bash
+
+OUTPUT_FILENAME=/tmp/test_toyRobot_output
+
+./run_test_commands > $OUTPUT_FILENAME
+
+diff -u $OUTPUT_FILENAME test_commands/expected_output
+if [ $? != 0 ]; then
+    echo "Error! Program output was not as expected."
+    exit 1
+else
+    echo  "Test passed (:"
+fi

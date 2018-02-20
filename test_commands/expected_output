@@ -1,0 +1,26 @@
+Running: java -jar toyRobot.jar test_commands/commands_ignored_before_place.txt
+0,4,EAST
+4,3,EAST
+exit status: 0
+
+Running: java -jar toyRobot.jar test_commands/commands_that_move_robot_off_table_ignored.txt
+0,0,NORTH
+exit status: 0
+
+Running: java -jar toyRobot.jar test_commands/commands_with_invalid_whitespace.txt
+exit status: 1
+
+Running: java -jar toyRobot.jar test_commands/invalid_command.txt
+exit status: 1
+
+Running: java -jar toyRobot.jar test_commands/long_list_of_commands.txt
+0,0,WEST
+1,0,EAST
+1,1,NORTH
+1,4,NORTH
+4,4,EAST
+4,0,SOUTH
+3,1,NORTH
+0,1,WEST
+exit status: 0
+
