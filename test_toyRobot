@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# The below is brittle and will not scale
+# This is just a simple way to do an end to end test.
+
 OUTPUT_FILENAME=/tmp/test_toyRobot_output
 
 ./run_test_commands > $OUTPUT_FILENAME
