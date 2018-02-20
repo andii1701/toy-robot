@@ -21,6 +21,11 @@ class RobotTest : StringSpec() {
             (r.getVec() == SimpleVector(0, 1, Heading.NORTH)) shouldBe true
         }
 
+        "Robot().getVec() should return null if place is not called"  {
+            Robot(tableTop).getVec() shouldBe null
+        }
+
+
         "Changing the results of Robot().getVec() should not update the robot's SimpleVector"  {
             val r = Robot(tableTop)
             r.place(SimpleVector(0, 1, Heading.NORTH))

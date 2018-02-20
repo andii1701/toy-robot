@@ -16,10 +16,8 @@ class Robot(private var tableTop: TableTop)  {
     fun turn(turnDirection: TurnDirection) { this.v?.turn(turnDirection) }
 
     fun move() {
-        if (!this.placed()) return
-
         val tmp = this.v?.copy()
         tmp?.move()
-        if (tableTop.isOn(tmp?.x, tmp?.y))  this.v = tmp
+        if (tableTop.isOn(tmp?.x, tmp?.y)) this.v = tmp
     }
 }

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for filename in test_commands/*.txt; do
+   echo "Runing: java -jar toyRobot.jar $filename"
+   java -jar toyRobot.jar $filename 2> /dev/null
+   echo "exit status: $?"
+   echo
+done

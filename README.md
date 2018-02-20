@@ -3,31 +3,34 @@ A simple toy robot simulator.
 
 This project is a solution to the toy robot problem as specified in PROBLEM.md
 
+## Assumptions
+
 The follow assumptions where made when implementing the simulator:
 * There is only ever one robot in the simulation.
 * The robot commands file is correctly formatted with one valid command per line.
 * Any incorrect commands will result in the program exiting.
-* Any blank lines or other unexpected white space will result in the program 
-exiting.
-* The user is running a Mac with homebrew. ( The simulation should work on other
-platforms but providing documention for this is out of scope )
+* Any blank lines or other unexpected white space in the commands file will 
+result in the program exiting.
+* The user is running a Mac and has homebrew installed.
+* The simulation may work on other platforms the JVM can run on eg, linux or
+Windows, but providing documentation on how to do this is out of scope.
 
 ## Getting Started
 
-* Download and install JDK_1.8 for your platform: https://www.java.com/en/download/ and setup $JAVA_HOME
-* Download and install Kotlin compiler (On Mac with homebrew):
+* Download and install JDK_1.8 for your platform:
+https://www.java.com/en/download/ and set $JAVA_HOME
+* Download and install Kotlin compiler with homebrew):
 ```
 $ brew update
 $ brew install kotlin
 ```
-For other platforms see: https://kotlinlang.org/docs/tutorials/command-line.html
 
 ### Compiling and running
 To compile the simulator
 
 ```$ kotlinc src/main/kotlin/toyrobot -include-runtime -d toyRobot.jar```
 
-To run the simulator with the default commands.txt file:
+To run the simulator with the default `commands.txt` file:
 
 ```$ java -jar toyRobot.jar```
 
@@ -35,15 +38,16 @@ To specify your own commands file:
 
 ```$ java -jar toyRobot.jar <mycommandsfile>```
 
-See below for a list of valid commands and what 
-the commands do. 
+See below for a list of valid commands and what
+the commands do.
 
-### Running tests
+### Running unit tests
 
-```./gradew test``` TODO check this is best practice 
+```./gradew test``` TODO check this is best practice
 
 
 ## Simulation commands
+The commands file contains a list of commands, one per line.
 The following are valid simulation commands
     PLACE X,Y,F
     MOVE
@@ -66,6 +70,7 @@ The following are valid simulation commands
 - Test commands files can be found in the test_commands directory.
 
 ### Test command files
-There are more example commands in the test_commands directory
+There are some test commands files in the test_commands directory that
+exercise the simulation features and error catching.
 
-To run all the test_commands run the script ./run_all_examples TODO
+To run all the test_commands run the script `./run_test_commands`

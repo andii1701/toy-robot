@@ -12,10 +12,10 @@ enum class TurnDirection { LEFT, RIGHT }
 data class SimpleVector(var x: Int, var y: Int, var heading: Heading) {
 
     fun move(units:Int = defaultUnits) = when (this.heading) {
-            Heading.NORTH -> this.y += units
-            Heading.EAST ->  this.x += units
-            Heading.SOUTH -> this.y -= units
-            Heading.WEST -> this.x -= units
+        Heading.NORTH -> this.y += units
+        Heading.EAST ->  this.x += units
+        Heading.SOUTH -> this.y -= units
+        Heading.WEST -> this.x -= units
     }
 
     fun turn(turnDirection: TurnDirection)  {

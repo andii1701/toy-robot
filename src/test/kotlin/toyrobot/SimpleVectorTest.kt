@@ -24,31 +24,31 @@ class SimpleVectorTests : StringSpec() {
             (SimpleVector(0,1, Heading.EAST) == SimpleVector(1,1, Heading.EAST)) shouldBe false
         }
 
-        "SimpleVector().move() should move NORTH if the heading is set to NORTH" {
+        "SimpleVector().move() should move NORTH if the heading NORTH" {
             val v = SimpleVector(0,0, Heading.NORTH)
             v.move()
             (v == SimpleVector(0,1, Heading.NORTH)) shouldBe true
         }
 
-        "SimpleVector().move() should move EAST if the heading is set to EAST" {
+        "SimpleVector().move() should move EAST if the heading EAST" {
             val v = SimpleVector(0,0, Heading.EAST)
             v.move()
             (v == SimpleVector(1,0, Heading.EAST)) shouldBe true
         }
 
-        "SimpleVector().move() should move SOUTH if the heading is set to SOUTH" {
+        "SimpleVector().move() should move SOUTH if the heading is SOUTH" {
             val v = SimpleVector(0,0, Heading.SOUTH)
             v.move()
             (v == SimpleVector(0,-1, Heading.SOUTH)) shouldBe true
         }
 
-        "SimpleVector().move() should move WEST if the heading is set to WEST" {
+        "SimpleVector().move() should move WEST if the heading is WEST" {
             val v = SimpleVector(0,0, Heading.WEST)
             v.move()
             (v == SimpleVector(-1,0, Heading.WEST)) shouldBe true
         }
 
-        "SimpleVector.turn(newDir) should return correct new heading based on current direction"  {
+        "SimpleVector.turn(newDir) should return correct new heading based on current heading" {
             val v = SimpleVector(0,0, Heading.NORTH)
             v.turn(TurnDirection.LEFT)
             v.heading shouldBe Heading.WEST

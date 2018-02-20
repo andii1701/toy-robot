@@ -1,9 +1,8 @@
+package toyrobot
+
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldThrow
 import io.kotlintest.specs.StringSpec
-
-import toyrobot.TableTop
-import toyrobot.TableTopException
 
 
 class TableTopTests : StringSpec() {
