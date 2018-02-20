@@ -19,6 +19,8 @@ result in the program exiting.
 * The simulation may work on other platforms the JVM can run on eg, linux or
 Windows, but providing documentation on how to do this is out of scope.
 * The table dimensions can be hardcoded in code.
+* The command PLACE X,Y,F, X and Y are assumed to be positive. Using negative X and Y
+values will result in a application error.
 
 ## Getting Started
 
