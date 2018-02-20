@@ -3,8 +3,7 @@ package toyrobot
 import toyrobot.commandParser.parsePlaceCommand
 import toyrobot.commandParser.validateCommands
 
-
-class SimulationController(private var robot: Robot, private val commands: List<String>)  {
+class SimulationController(private var robot: Robot, private val commands: List<String>) {
 
     private var lastReport: String? = null
 
@@ -23,7 +22,7 @@ class SimulationController(private var robot: Robot, private val commands: List<
         }
     }
 
-    private fun report()  {
+    private fun report() {
         this.lastReport = robot.report()
         println(this.lastReport)
     }

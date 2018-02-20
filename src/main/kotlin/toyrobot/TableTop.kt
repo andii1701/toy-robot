@@ -1,12 +1,9 @@
 package toyrobot
 
-
-class TableTopException(override var message:String): Exception(message)
-
+class TableTopException(override var message: String) : Exception(message)
 
 const val defaultXLength = 5
 const val defaultYLength = 5
-
 
 data class TableTop( val xLength: Int = defaultXLength, val yLength: Int = defaultYLength) {
 

@@ -1,7 +1,6 @@
 package toyrobot
 
-
-class Robot(private var tableTop: TableTop)  {
+class Robot(private var tableTop: TableTop) {
 
     private var v: SimpleVector? = null
 

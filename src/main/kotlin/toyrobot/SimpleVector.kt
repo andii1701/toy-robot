@@ -2,27 +2,24 @@ package toyrobot
 
 const val defaultUnits = 1
 
-
 enum class Heading { NORTH, EAST, SOUTH, WEST }
-
 
 enum class TurnDirection { LEFT, RIGHT }
 
-
 data class SimpleVector(var x: Int, var y: Int, var heading: Heading) {
 
-    fun move(units:Int = defaultUnits) = when (this.heading) {
+    fun move(units: Int = defaultUnits) = when (this.heading) {
         Heading.NORTH -> this.y += units
-        Heading.EAST ->  this.x += units
+        Heading.EAST -> this.x += units
         Heading.SOUTH -> this.y -= units
         Heading.WEST -> this.x -= units
     }
 
-    fun turn(turnDirection: TurnDirection)  {
+    fun turn(turnDirection: TurnDirection) {
         val o = this.heading.ordinal
         val s = Heading.values().size
 
-        this.heading = when(turnDirection)  {
+        this.heading = when(turnDirection) {
             TurnDirection.RIGHT -> Heading.values()[(o + 1) % s]
             // Need extra 'if' because "-1 % 4 == -1"?!!
             TurnDirection.LEFT -> Heading.values()[(if (o == 0) s - 1 else (o - 1) % s)]

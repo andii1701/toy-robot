@@ -10,8 +10,6 @@ import toyrobot.commandParser.parsePlaceCommand
 import toyrobot.commandParser.NoCommandsException
 import toyrobot.commandParser.CommandsParsingException
 import toyrobot.Heading as H
-import toyrobot.TurnDirection as D
-
 
 class CommandsTests : StringSpec() {
     init {
@@ -56,11 +54,11 @@ class CommandsTests : StringSpec() {
                     "").forEach { isValidCommand(it) shouldBe false }
         }
 
-        "parsePlaceCommand(..) should throw exception for invalid place command"  {
+        "parsePlaceCommand(..) should throw exception for invalid place command" {
             shouldThrow<CommandsParsingException> { parsePlaceCommand("PLACEWRONG 0,0,NORTH") }
         }
 
-        "parsePlaceCommand(..) should return a valid coordinate and heading when a valid PLACE command is passes"  {
+        "parsePlaceCommand(..) should return a valid coordinate and heading when a valid PLACE command is passes" {
             val v = parsePlaceCommand("PLACE 1,2,NORTH")
             v.x shouldBe 1
             v.y shouldBe 2
